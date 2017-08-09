@@ -16,7 +16,10 @@ fs.createReadStream(process.argv[2])
         lineCount++
       }
     }
-  })
-  .on('end', function() {
+  }).on('end', function() {
     process.stdout.write(`${lineCount}\n`)
+    process.exit(0)
+  }).on('error', function(err) {
+    process.stderr.write(`${err}\n`)
+    process.exit(1)
   });
